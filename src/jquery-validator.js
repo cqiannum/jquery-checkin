@@ -885,7 +885,7 @@
 
       this.$element = $( element );
       this.element = element;
-    //  this.newInstance = null;
+      //this.newInstance = null;
 
       this.options = $.extend(true, {}, Validator.defaults, options);
       this.namespace = this.options.namespace;
@@ -903,11 +903,11 @@
 
       init: function() {
 
-          return this.whichType(this.element);
+          this.whichType(this.element);
       },
 
       whichType: function(elem) {
-          var $elem = $(elem), newInstance = null;
+          var $elem = $(elem), newInstance;
 
           if($elem.is('form') || $elem.data('bind') === true) {
               newInstance = this.bind($elem, 'validatorForm');
@@ -1000,12 +1000,13 @@
 
           });
       } else {
+          return this.each(function() {
+              if(!$.data(this, 'validator')) {
 
-          if(!$(this).data('validator')) {
+                  $.data(this, 'validator', new Validator(this, options));
 
-              $(this).data('validator', new Validator(this, options));
-
-          }
+              }
+          });
 
       }
 
