@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>    <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]> <!-->   <html class="no-js"> <!--<![endif]>-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Validator</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width">
+
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/prism.css">
+		<link rel="stylesheet" href="css/main.css">
+
+		<script src="js/jquery-1.10.2.min.js"></script>
+		<script src="js/prism.js"></script>
+		<script src="js/bootstrap.js"></script>
+		<script src="js/jquery.toc.js"></script>
+		<script src="../src/jquery-validator.js"></script> 
+
+		<style type="text/css">
+			.example {
+				background-color: #f8f8f8;
+			}
+			i {
+				font-style: normal;
+				padding: 0 5px;
+			}
+		</style>
+
+	</head>
+	<body>
+	<!--[if lt IE 7]>
+		<p class="chromeframe">
+			You are using an outdated browser.<a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">Install Google Chrome Frame</a> to better experience this site.
+		</p>
+	<![endif]-->	
+
+	<div id="toc"></div>
+	<div id="wrapper">
+		<h2>Validator</h2>
+		<section>
+			<h3>Form</h3>
+			<pre class="has-example">
+				<code class="lauguage-markup">
+					<!--some code will write here-->
+				</code>
+			</pre>
+			<div class="example">
+				<form id="demo-form">
+					<label for="fullname">
+						Full Name * :
+					</label>
+					<input type="text" id="fullname" data-required="true" />
+					<br>
+					<label for="email">
+						Email * :
+					</label>
+					<input type="text" id="email" name="email" data-type="email" data-trigger="change" data-required="true" />
+					<br>
+					<label for="website">
+						Website :
+					</label>
+					<input type="text" id="website" name="website" data-trigger="change" data-type="url"/>
+					<br>
+					<label for="message">
+						Message (20 chars min, 200 max) :
+					</label>
+					<textarea id="message" name="message" data-trigger="keyup" data-rangelength="[20,200]">
+						
+					</textarea>
+					<br>
+					<input type="hidden" name="superhidden" id="superhidden" />
+					<br>
+				</form>
+			</div>
+		</section>
+		<!--/////////////////////////////////////////////////////////-->
+		<section>
+			<h3>Basic constraints</h3>
+			<div class="example">
+				<section>
+					<h4>required</h4>
+					<pre class="has-example">
+						<code class="lauguage-markup">
+							<!--some code will write here-->
+						</code>
+					</pre>
+					<section>
+						<form data-validate="validator" id="form-required">
+							<input type="text" id="data-required" data-required="true" placeholder="required field" />
+							<br>
+							<span class="btn" onclick="javascript:$('#form-required').validator();">
+								<i class="icon-ok">OK</i>
+							</span>
+							<br>
+							<br>
+							<select id="select-required" data-required="true">
+								<option value="">
+									Please choose
+								</option>
+								<option vlaue="foo">
+									Foo
+								</option>
+								<option value="bar"> 
+									Bar
+								</option>
+							</select>
+							<br>
+							<label for="radio-required">
+								Radio:
+							</label>
+							<input type="radio" name="radio-required" value="foo" id="radio-required" data-required="ture">
+							<input type="radio" name="radio-required2" value="bar" id="radio-required" data-required="ture">
+						</form>
+					</section>
+					<h4>minlength</h4>
+					<pre class="has-example">
+						<code class="lauguage-markup">
+							<!--some code will write here-->
+						</code>
+					</pre>
+					<section>
+						<form data-vlidate="validator">
+							<input type="text" id="data-minlength" data-minlength="6" placeholder="mimlength=6">
+						</form>
+						<span class="btn" onclick="javascript:$('#data-minlength').validator();">
+							<i class="icon-ok">OK</i>
+						</span>
+					</section>
+					<h4>maxlength</h4>
+					<pre class="has-example">
+						<code class="lauguage-markup">
+							<!--some code will write here-->
+						</code>
+					</pre>
+					<section>
+						<form data-validate="validator">
+							<input type="text" id="data-maxlength" data-maxlength="6" placeholder="maxlength=6">	
+						</form>
+						<span class="btn" onclick="javascript:$('#data-maxlength').validator();">
+							<i class="icon-ok">OK</i>
+						</span>
+					</section>
+					<h4>rangeLength</h4>
+					<pre class="has-example">
+						<code class="lauguage-markup">
+							<!--some code will write here-->
+						</code>
+					</pre>
+					<section>
+						<form data-validete="validator">
+							<input type="text" id="data-rangelength" data-rangelength="[5,10]" placeholder="rangelength=[5,10]">
+						</form>
+						<span class="btn" onclick="javascript:$('#data-rangelength').validator();">
+							<i class="icon-ok">OK</i>
+						</span>
+					</section>
+					<h4>min</h4>
+					<pre class="has-example">
+						<code class="lauguage-markup">
+							<!--some code will write here-->
+						</code>
+					</pre>
+					<section>
+						<form data-validate="validator">
+							<input type="text" id="data-minmum" data-min="6" placeholder="min = 6">
+						</form>
+						<span class="btn" onclick="javascript:$('#data-minmum').validator();">
+							<i class="icon-ok">OK</i>
+						</span>
+					</section>
+					<h4>max</h4>
+					<pre class="has-example">
+						<code class="lauguage-markup">
+							<!--some code will write here-->
+						</code>
+					</pre>
+					<section>
+						<form data-validate="validator">
+							<input type="text" id="data-maximum" data-max="100" placeholder="max = 100">
+						</form>
+						<span class="btn" onclick="javascript:$('#data-maximum').validator();">
+							<i class="icon-ok">OK</i>
+						</span>
+					</section>
+					<h4>range</h4>
+					<pre class="has-example">
+						<code class="lauguage-markup">
+							<!--some code will write here-->
+						</code>
+					</pre>
+					<section>
+						<form data-validate="validator">
+							<input type="text" id="data-range" data-range="[6, 100]" placeholder="range = [6,100]">
+						</form>
+						<span class="btn" onclick="javascript:$('#data-range').validator();">
+							<i class="icon-ok">OK</i>
+						</span>
+					</section>
+					<h4>pattern</h4>
+					<pre class="has-example">
+						<code class="lauguage-markup">
+							<!--some code will write here-->
+						</code>
+					</pre>
+					<section>
+						<form data-validate="validator">
+							<input type="text" id="data-regexp" data-regexp="#[A-Fa-f0-9]{6}" placeholder="hexa color code">
+						</form>
+						<span class="btn" onclick="javascript:$('#data-regexp').validator('');">
+							<i class="icon-ok">OK</i>
+						</span>
+					</section>
+				</section>
+			</div>
+		</section>
+		<!--/////////////////////////////////////////////////////////-->
+		<section>
+			<h3>Type Constraints</h3>
+			<div class="example">
+				<section>
+					<h4>email</h4>
+					<pre class="has-example">
+						<code class="lauguage-markup">
+							<!--some code will write here-->
+						</code>
+					</pre>
+					<section>
+						<form data-validate="validator">
+							<input type="text" id="data-email" data-type="email" placeholder="email">
+						</form>
+						<span class="btn" onclick="javascript:$('#data-email').validator('');">
+							<i class="icon-ok">OK</i>
+						</span>
+					</section>
+					<h4>url</h4>
+					<pre class="has-example">
+						<code class="lauguage-markup">
+							<!--some code will write here-->
+						</code>
+					</pre>
+					<section>
+						<form data-validate="validator">
+							<input type="text" id="data-url" data-type="url" placeholder="url">
+						</form>
+						<span class="btn" onclick="javascript:$('#data-url').validator('');">
+							<i class="icon-ok">OK</i>
+						</span>
+					</section>
+					<h4>url strict</h4>
+					<pre class="has-example">
+						<code class="lauguage-markup">
+							<!--some code will write here-->
+						</code>
+					</pre>
+					<section>
+						<form data-validate="validator">
+							<input type="text" id="data-url-strict" data-type="urlstrict" placeholder="urlstrict">
+						</form>
+						<span class="btn" onclick="javascript:$('#data-urlstrict').validator('');">
+							<i class="icon-ok">OK</i>
+						</span>
+					</section>
+					<h4>digits</h4>
+					<pre class="has-example">
+						<code class="lauguage-markup">
+							<!--some code will write here-->
+						</code>
+					</pre>
+					<section>
+						<form data-validate="validator">
+							<input type="text" id="data-digits" data-type="digits" placeholder="digits">
+						</form>
+						<span class="btn" onclick="javascript:$('#data-urlstrict').validator('');">
+							<i class="icon-ok">OK</i>
+						</span>
+					</section>
+					<h4>number</h4>
+					<pre class="has-example">
+						<code class="lauguage-markup">
+							<!--some code will write here-->
+						</code>
+					</pre>
+					<section>
+						<form data-validate="validator">
+							<input type="text" id="data-number" data-type="number" placeholder="number">	
+						</form>
+						<span class="btn" onclick="javascript:$('#data-number').validator('');">
+							<i class="icon-ok">OK</i>
+						</span>
+					</section>
+					<h4>alphanum</h4>
+					<pre class="has-example">
+						<code class="lauguage-markup">
+							<!--some code will write here-->
+						</code>
+					</pre>
+					<section>
+						<form data-validate="validator">
+							<input type="text" id="data-alphanum" data-type="alphanum" placeholder="alphanum">	
+						</form>
+						<span class="btn" onclick="javascript:$('#data-alphanum').validator('');">
+							<i class="icon-ok">OK</i>
+						</span>
+					</section>
+					<h4>dateIso</h4>
+					<pre class="has-example">
+						<code class="lauguage-markup">
+							<!--some code will write here-->
+						</code>
+					</pre>
+					<section>
+						<form data-validate="validator">
+							<input type="text" id="data-dateIso" data-type="dateIso" placeholder="YYYY-MM-DD">
+						</form>
+						<span class="btn" onclick="javascript:$('#data-alphanum').validator('');">
+							<i class="icon-ok">OK</i>
+						</span>
+					</section>
+					<h4>phone</h4>
+					<pre class="has-example">
+						<code class="lauguage-markup">
+							<!--some code will write here-->
+						</code>
+					</pre>
+					<section>
+						<form data-validate="validator">
+							<input type="text" id="data-phone" date-type="phone" placeholder="(XXX) XXXX XXX">
+						</form>
+						<span class="btn" onclick="javascript:$('#data-alphanum').validator('');">
+							<i class="icon-ok">OK</i>
+						</span>
+					</section>
+				</section> 
+			</div> 
+		</section>
+		<!--////////////////////////////////////////////////////////-->
+		<section>
+			<h3>Property</h3>
+			<div class="example">
+				<section>
+					<h4>data-trigger</h4>
+					<pre class="has-example">
+						<code class="lauguage-markup">
+							<!--some code will write here-->
+						</code>
+					</pre>
+					<section>
+						<form data-validate="validator" id="form9">
+							<input type="text" data-type="email" data-trigger="keyup" data-validation-minlength="0" placeholder="keyup validation trigger">
+							<input type="text" data-type="email" data-trigger="change" data-validation-minlength="0" placeholder="change validation trigger">
+						</form>
+					</section>
+					<h4>data-validation-minlength</h4>
+					<pre class="has-example">
+						<code class="lauguage-markup">
+							<!--some code will write here-->
+						</code>
+					</pre>
+					<section>
+						<form data-validate="validator" id="form10">
+							<input type="text" data-type="email" data-trigger="keyup" placeholder="default keyup validation">
+							<input type="text" data-type="email" data-trigger="keyup" data-validation-minlength="8" placeholder="8 chars keyup validation">
+						</form>
+					</section>
+					<h4>data-error-message</h4>
+					<pre class="has-example">
+						<code class="lauguage-markup">
+							<!--some code will write here-->
+						</code>
+					</pre>
+					<section>
+						<form data-validate="validator">
+							<input type="text" data-type="alphanum" data-rangelength="[10,10]" data-error-message="You must enter a 10 characters alphanumeric value" placeholder="custom error message">
+						</form>
+					</section>
+					<h4>data-`constraintName`-message || data-type-`type`-message</h4>
+					<pre class="has-example">
+						<code class="lauguage-markup">
+							<!--some code will write here-->
+						</code>
+					</pre>
+					<section>
+						<form data-validate="validator">
+							<input type="text" data-type="email" data-minlength="20" data-trigger="keyup" data-type-email-message="Custom email message" data-minlength-message="Custom minlength message" placeholder="custom error messages">
+						</form>
+					</section>
+				</section>
+			</div>
+		</section>
+    </div>
+    <script>
+    	$(function() {
+    		$('#form9').validator();
+    		$('#form10').validator();
+    	});
+    </script>
+	<script>
+		(function(){
+    		$('#toc').toc();
+    	})();
+	</script>
+	</body>
+</html>
