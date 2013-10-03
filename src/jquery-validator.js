@@ -903,7 +903,7 @@
 
       init: function() {
 
-          this.whichType(this.element);
+         return this.whichType(this.element);
       },
 
       whichType: function(elem) {
