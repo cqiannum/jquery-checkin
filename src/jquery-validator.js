@@ -277,14 +277,15 @@
 
       addItem: function(elem) {
 
-          var $elem = $(elem),fieldItem;
+          // var $elem = $(elem),
+          var fieldItem;
 
-          if($elem.is(this.options.removes)) {
+          if($(elem).is(this.options.removes)) {
 
               return false;
           }
 
-          fieldItem = $elem.validator(this.options);
+          fieldItem = $(elem).validator(this.options);
           fieldItem.setParent(this);
 
           this.items.push(fieldItem);
@@ -907,7 +908,7 @@
       },
 
       whichType: function(elem) {
-          var $elem = $(elem), newInstance;
+          var $elem = $(elem), newInstance = null;
 
           if($elem.is('form') || $elem.data('bind') === true) {
               newInstance = this.bind($elem, 'validatorForm');
@@ -920,9 +921,8 @@
       },
 
       bind: function(elem, type) {
-          var validatorInstance = $(elem).data(type);
+          var validatorInstance 
         
-          if(!validatorInstance) {
             switch (type) {
 
               case 'validatorForm':
@@ -938,9 +938,6 @@
                   return;
 
             }
-
-
-          }
           
           return validatorInstance;
 
@@ -1001,6 +998,7 @@
           });
       } else {
           return this.each(function() {
+
               if(!$.data(this, 'validator')) {
 
                   $.data(this, 'validator', new Validator(this, options));
