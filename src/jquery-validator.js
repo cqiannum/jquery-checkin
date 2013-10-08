@@ -886,7 +886,7 @@
 
       this.$element = $( element );
       this.element = element;
-      //this.newInstance = null;
+      this.newInstance = null;
 
       this.options = $.extend(true, {}, Validator.defaults, options);
       this.namespace = this.options.namespace;
@@ -904,19 +904,21 @@
 
       init: function() {
 
-         return this.whichType(this.element);
+          this.whichType(this.element);
+          return this.newInstance;
       },
 
       whichType: function(elem) {
-          var $elem = $(elem), newInstance = null;
+          var $elem = $(elem), createInstance = null;
 
           if($elem.is('form') || $elem.data('bind') === true) {
-              newInstance = this.bind($elem, 'validatorForm');
+              createInstance = this.bind($elem, 'validatorForm');
           } else if ($elem.is(this.inputs) && !$elem.is(this.removes)) {
-              newInstance = this.bind($elem, !$elem.is(this.radioOrCheckbox) ? 'validatorField' : 'validatorFieldMultiple');
+              createInstance = this.bind($elem, !$elem.is(this.radioOrCheckbox) ? 'validatorField' : 'validatorFieldMultiple');
           }
 
-          return newInstance;
+          this.newInstance = createInstance;
+          //return this.newInstance;
 
       },
 
