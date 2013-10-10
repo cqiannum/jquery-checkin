@@ -383,6 +383,14 @@
 
           //bind validators to field
           this.bindConstraints();
+
+          //error ul
+          this.ulErrorManagement();
+
+          //bind events if register
+          if(this.hasConstraints()) {
+              this.bindValidationEvents();
+          }
       },
 
       bindHtml5Constraints: function() {
@@ -735,6 +743,18 @@
           }
       },
 
+      hasConstraints: function() {
+          for(var constraint in this.constraints) {
+              return true;
+          }
+
+          return false;
+      },
+
+      // isValid: function() {
+      //     return this.validate(false);
+      // },
+
       /*
        * public methods
        *
@@ -888,7 +908,7 @@
       this.element = element;
       this.newInstance = null;
 
-      this.options = $.extend(true, {}, Validator.defaults, options);
+      this.options = $.extend(true, {}, Validator.defaults, options, $(this).data());
       this.namespace = this.options.namespace;
       this.inputs = this.options.inputs;
       this.removes = this.options.removes;
