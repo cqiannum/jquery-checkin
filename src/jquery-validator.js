@@ -13,6 +13,7 @@
 
   //verify constructor
   function Verify(options) {
+
       this.options = options;
       this.messages = this.options.messages;
       this.validations = this.options.validations;
@@ -39,6 +40,7 @@
         minlength: "This value is too short. It shold have %s characters or more.",
         maxlength: "This value is too long. Tt should have %s characters or less." 
       };
+
 
       this.init();
 
@@ -234,10 +236,10 @@
 
           });
 
-          this.$element.on('submit.' + this.type, false, $.proxy(this.validate, this));
+          this.$element.on('submit.' + this.type, false, $.proxy(this.focus, this));
       },
 
-      validate: function() {
+      focus: function() {
           var valid = true, item;
 
           this.focuseField = false;
@@ -338,6 +340,7 @@
       this.$element = $(element);
       this.element = element;
       this.options = options;
+      this.type = type;
       this.namespace = this.options.namespace;
       this.animate = this.options.animate;
       this.animateDutation = this.options.animateDutation;
@@ -345,10 +348,12 @@
       this.successClass = this.options.successClass;
       this.errorMessage = this.options.errorMessage;
       this.ulTemplateClass = this.options.ulTemplateClass;
+      this.errors = this.options.errors;
 
       this.valid = true;
       this.validatedOnce = false;
       this.isRequired = false;
+      this.val = this.$element.val();
       this.constraints = {};
 
 
@@ -359,23 +364,22 @@
           return this;
       }
 
-      this.init(element, type || 'ValidatorField');
+
+      this.init();
   }
 
   ValidatorField.prototype = {
 
       constructor: ValidatorField,
 
-      init: function(element, type) {
-          this.type = type;
-          this.val = this.$element.val();
-
+      init: function() {
+          
           //overwrited validatorMultiple if radio or check inputs
           if(typeof this.isRadioOrCheckbox === 'undefined') {
 
               this.isRadioOrCheckbox = false;
               this.hash = this.createHash();
-              this.errorClassHandler = this.options.errors.classHandler(element, this.isRadioOrCheckbox) || this.$element;
+              this.errorClassHandler = this.errors.classHandler(this.element, this.isRadioOrCheckbox) || this.$element;
           }
 
           //bind html5 properties
@@ -824,7 +828,7 @@
       this.Verify = new Verify(options);
 
       //call ValidatorField constructor
-      this.init(element, type || 'ValidatorFieldMultiple');
+      this.init();
 
   }
 
@@ -943,7 +947,7 @@
       },
 
       bind: function(elem, type) {
-          var validatorInstance 
+          var validatorInstance; 
         
             switch (type) {
 
